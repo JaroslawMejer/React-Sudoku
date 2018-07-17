@@ -20,13 +20,13 @@ class App extends React.Component {
     render() {
         return (
             <div className={style.app}>
-                <h1>Sudoku</h1>
+                <h1 className={style}>Sudoku</h1>
                 <Board boardState={this.state.initialBoard} />
                 <div className={style.buttons}>
-                    <button>Check</button>
-                    <button onClick={this.newGame}>New Game</button>
-                    <button>Solve</button>
-                    <button>Restart</button>
+                    <button className={style}>Check</button>
+                    <button className={style} onClick={this.newGame}>New Game</button>
+                    <button className={style}>Solve</button>
+                    <button className={style}>Restart</button>
                 </div>
             </div>
 

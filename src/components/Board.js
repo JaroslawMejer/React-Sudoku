@@ -1,6 +1,7 @@
 import React from 'react';
 import Tile from './Tile.js';
 import uuid from 'uuid'
+import style from './Board.css';
 
 class Board extends React.Component {
     constructor(){
@@ -11,7 +12,9 @@ class Board extends React.Component {
     }
     render() {
         return (
-            this.props.boardState.split('').map(eachTile => <Tile value={eachTile} key={uuid.v4()} />)
+            <div className={style.boardContainer}>
+                {this.props.boardState.split('').map(eachTile => <Tile value={eachTile} key={uuid.v4()} className={style.tile} />)}
+            </div>
         )
     }
 };
