@@ -12,6 +12,10 @@ class App extends React.Component {
             initialBoard: sudoku.generate('easy'),
             board: ''
         };
+        this.newGame = this.newGame.bind(this)
+    }
+    newGame(){
+        this.setState({initialBoard: sudoku.generate('easy')})
     }
     render() {
         return (
@@ -20,7 +24,7 @@ class App extends React.Component {
                 <Board boardState={this.state.initialBoard} />
                 <div className={style.buttons}>
                     <button>Check</button>
-                    <button>New Game</button>
+                    <button onClick={this.newGame}>New Game</button>
                     <button>Solve</button>
                     <button>Restart</button>
                 </div>

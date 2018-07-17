@@ -23,7 +23,7 @@ class Tile extends React.Component {
                     min='1'
                     max='9'
                     onChange={this.handleChange}
-                    value='' />
+                    value={this.props.value} />
         );
     }
 };
