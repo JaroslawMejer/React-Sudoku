@@ -18,7 +18,7 @@ class Board extends React.Component {
         if (this.props.boardState.length < 5) {
             return (
                 <div className={style.boardContainer}>
-                    {this.props.initialBoardState.split('').map((eachTile, index) => <Tile callbackFromParent={this.myCallback.bind(this)} value={eachTile} key={uuid.v4()} className={style.tile} id={index} />)}
+                    {this.props.initialBoardState.split('').map((eachTile, index) => <Tile callbackFromParent={this.myCallback.bind(this)} value={eachTile} key={uuid.v4()} className={style.tile} id={index} disabled/>)}
                 </div>
             )
         } else {
