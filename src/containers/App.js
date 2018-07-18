@@ -20,19 +20,25 @@ class App extends React.Component {
     }
     changingBoard(dataFromBoard, indexFromBoard){
         console.log('Data aquired in board: ' + dataFromBoard + 'Index aquired in board: ' + indexFromBoard)
-        var newBoard = this.state.initialBoard.split('')
-        console.log(newBoard)
-        newBoard[indexFromBoard] = dataFromBoard
-        console.log(newBoard)
-        var connectedNewBoard = newBoard.join('')
-        console.log(connectedNewBoard)
-        this.setState({initialBoard: connectedNewBoard})  
+        if (this.state.board.length < 2) {
+            var newBoard = this.state.initialBoard.split('')
+            newBoard[indexFromBoard] = dataFromBoard
+            var connectedNewBoard = newBoard.join('')
+            this.setState({board: connectedNewBoard}) 
+        } else{
+            var newBoard = this.state.board.split('')
+            newBoard[indexFromBoard] = dataFromBoard
+            var connectedNewBoard = newBoard.join('')
+            this.setState({board: connectedNewBoard})  
+        }
     }
     render() {
+        console.log('initialBoard ' + this.state.initialBoard)
+        console.log('Board ' + this.state.board)
         return (
             <div className={style.app}>
                 <h1 className={style}>Sudoku</h1>
-                <Board boardState={this.state.initialBoard} callbackFromGrandparent={this.changingBoard.bind(this)} />
+                <Board boardState={this.state.board} initialBoardState={this.state.initialBoard} callbackFromGrandparent={this.changingBoard.bind(this)} />
                 <div className={style.buttons}>
                     <button className={style}>Check</button>
                     <button className={style} onClick={this.newGame}>New Game</button>

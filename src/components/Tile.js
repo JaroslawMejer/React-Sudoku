@@ -10,10 +10,8 @@ class Tile extends React.Component {
     }
     handleChange(event) {
         this.props.callbackFromParent(event.target.value, this.props.id)
-        console.log('Your value: ' + event.target.value + ' Initial value: ' + this.props.value + 'Index of the element: ' + this.props.id)
     }
     handleSubmit(event) {
-        console.log('Number ' + this.state.value + ' was submitted')
         event.preventDefault();
     }
     render() {
