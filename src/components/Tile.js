@@ -9,8 +9,8 @@ class Tile extends React.Component {
         this.handleChange = this.handleChange.bind(this)
     }
     handleChange(event) {
-        this.props.callbackFromParent(event.target.value)
-        console.log(event.target.value + '' + this.props.value)
+        this.props.callbackFromParent(event.target.value, this.props.id)
+        console.log('Your value: ' + event.target.value + ' Initial value: ' + this.props.value + 'Index of the element: ' + this.props.id)
     }
     handleSubmit(event) {
         console.log('Number ' + this.state.value + ' was submitted')
@@ -24,7 +24,8 @@ class Tile extends React.Component {
                     max='9'
                     onChange={this.handleChange}
                     value={this.props.value}
-                    className={this.props.className} />
+                    className={this.props.className}
+                    id={this.props.id} />
         );
     }
 };
