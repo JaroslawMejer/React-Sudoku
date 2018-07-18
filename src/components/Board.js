@@ -12,7 +12,7 @@ class Board extends React.Component {
     }
     myCallback(dataFromTile, index){
         console.log('Passed value: ' + dataFromTile + ' Passed index: ' + index)
-        this.props.boardState.split('')[index] = dataFromTile
+        this.props.callbackFromGrandparent(dataFromTile, index)
     }
     render() {
         return (
