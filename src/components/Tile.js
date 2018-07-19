@@ -1,7 +1,7 @@
 import React from 'react';
 
 class Tile extends React.Component {
-    constructor(){
+    constructor(props){
         super();
         this.state = {
             value:''
@@ -25,7 +25,8 @@ class Tile extends React.Component {
                     onChange={this.handleChange}
                     value={this.props.value}
                     className={this.props.className}
-                    id={this.props.id} />
+                    id={this.props.id}
+                    disabled={this.props.disabled} />
         );
     }
 };

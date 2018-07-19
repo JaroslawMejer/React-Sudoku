@@ -8,10 +8,8 @@ import sudoku from 'sudoku-umd'
 class App extends React.Component {
     constructor(){
         super();
-        this.state = {
-            initialBoard: sudoku.generate('easy'),
-            board: ''
-        };
+        const newSudoku = sudoku.generate('easy')
+        this.state = {initialBoard: newSudoku, board: newSudoku}
         this.newGame = this.newGame.bind(this)
         this.changingBoard = this.changingBoard.bind(this)
         this.restart = this.restart.bind(this)
@@ -19,36 +17,25 @@ class App extends React.Component {
         this.check = this.check.bind(this)
     }
     newGame(){
-        this.setState({initialBoard: sudoku.generate('easy'), board: ''})
+        const newSudoku = sudoku.generate('easy')
+        this.setState({initialBoard: newSudoku, board: newSudoku})
     }
     solve(){
-        if (this.state.board.length < 2) {
-            this.setState({initialBoard: sudoku.solve(this.state.initialBoard), board: ''})
-        } else{
-            this.setState({initialBoard: sudoku.solve(this.state.board), board: ''})
-        }
+        this.setState({board: sudoku.solve(this.state.board)})
     }
     check(){
-        if (this.state.board.length < 2 && sudoku.solve(this.state.initialBoard) == true) {
-            console.log('Rozwiązanie jest wciąż możliwe!')
-        } else if (this.state.board.length > 2 && sudoku.solve(this.state.board) == true){
-            console.log('Rozwiązanie jest wciąż możliwe!')} else{
-            console.log('Coś poszło nie tak')
-            }
+        console.log('Wynik checka: ' + sudoku.solve(this.state.board))
+        if (sudoku.solve(this.state.board) == false){
+            console.log('Coś poszło nie tak')} else{
+            console.log('Rozwiązanie jest dalej możliwe!')
+        }
     }
     changingBoard(dataFromBoard, indexFromBoard){
         console.log('Data aquired in board: ' + dataFromBoard + 'Index aquired in board: ' + indexFromBoard)
-        if (this.state.board.length < 2) {
-            var newBoard = this.state.initialBoard.split('')
-            newBoard[indexFromBoard] = dataFromBoard
-            var connectedNewBoard = newBoard.join('')
-            this.setState({board: connectedNewBoard}) 
-        } else{
-            var newBoard = this.state.board.split('')
-            newBoard[indexFromBoard] = dataFromBoard
-            var connectedNewBoard = newBoard.join('')
-            this.setState({board: connectedNewBoard})  
-        }
+        var newBoard = this.state.board.split('')
+        newBoard[indexFromBoard] = dataFromBoard
+        var connectedNewBoard = newBoard.join('')
+        this.setState({board: connectedNewBoard})
     }
     restart(){
         this.setState({board:this.state.initialBoard})
@@ -59,7 +46,7 @@ class App extends React.Component {
         return (
             <div className={style.app}>
                 <h1 className={style}>Sudoku</h1>
-                <Board boardState={this.state.board} initialBoardState={this.state.initialBoard} callbackFromGrandparent={this.changingBoard.bind(this)} />
+                <Board boardState={this.state.board} initialBoard={this.state.initialBoard} callbackFromGrandparent={this.changingBoard.bind(this)} />
                 <div className={style.buttons}>
                     <button className={style} onClick={this.check}>Check</button>
                     <button className={style} onClick={this.newGame}>New Game</button>

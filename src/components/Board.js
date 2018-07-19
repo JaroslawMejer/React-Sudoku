@@ -4,30 +4,29 @@ import uuid from 'uuid'
 import style from './Board.css';
 
 class Board extends React.Component {
-    constructor(){
+    constructor(props){
         super();
         this.state = {
-            value:''
+            value:'',
+            disabledFiltr: props.initialBoard.split('').map(i => i != '.')
         };
     }
     myCallback(dataFromTile, index){
         this.props.callbackFromGrandparent(dataFromTile, index)
     }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            disabledFiltr: nextProps.initialBoard.split('').map(i => i != '.')
+        });
+    }
     render() {
         console.log(this.props.boardState.length)
-        if (this.props.boardState.length < 5) {
-            return (
-                <div className={style.boardContainer}>
-                    {this.props.initialBoardState.split('').map((eachTile, index) => <Tile callbackFromParent={this.myCallback.bind(this)} value={eachTile} key={uuid.v4()} className={style.tile} id={index} disabled/>)}
-                </div>
-            )
-        } else {
-           return (
-                <div className={style.boardContainer}>
-                    {this.props.boardState.split('').map((eachTile, index) => <Tile callbackFromParent={this.myCallback.bind(this)} value={eachTile} key={uuid.v4()} className={style.tile} id={index} />)}
-                </div>
-            ) 
-        }
+        console.log(this.state.disabledFiltr)
+        return (
+            <div className={style.boardContainer}>
+                {this.props.boardState.split('').map((eachTile, index) => <Tile callbackFromParent={this.myCallback.bind(this)} disabled={this.state.disabledFiltr[index]} value={eachTile} key={uuid.v4()} className={style.tile} id={index} />)}
+            </div>
+        ) 
     }
 };
 
