@@ -38,3 +38,7 @@
 .tile:nth-child(n+73):nth-child(-n+81){
 	border-bottom-color: black;
 }
+.tile:focus{
+	background: radial-gradient(ellipse at center, rgba(251,255,237,1) 0%, rgba(251,255,237,1) 66%, rgba(209,255,166,1) 96%, rgba(209,255,166,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbffed', endColorstr='#d1ffa6', GradientType=1 );
+}

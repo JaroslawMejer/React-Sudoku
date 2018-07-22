@@ -7,6 +7,7 @@ body{
 .app{
 	width: 400px;
 	margin: 0 auto;
+	position: relative;
 }
 h1{
 	text-align: center;
@@ -16,6 +17,14 @@ h1{
 	display: flex;
 	justify-content: space-around;
 }
+.difficulty{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.easy, .medium, .hard{
+	margin: 5px 0;
+}
 button{
 	text-transform: uppercase;
 	border: 1px solid black;
@@ -24,9 +33,44 @@ button{
 	font-weight: bold;
 	border-radius: 5px;
 	transition: 0.5s;
+	outline: none;
 }
 button:hover{
 	cursor: pointer;
 	color: grey;
 	border: 1px solid grey;
+}
+
+.toggled{
+	display: none;
+}
+.easy{
+	color: green;
+	border-color: green;
+}
+.medium{
+	color: rgb(208, 211, 0);
+	border-color: rgb(208, 211, 0);
+}
+.hard{
+	color: rgb(252, 0, 0);
+	border-color: rgb(252, 0, 0);
+}
+
+.protip{
+	position: absolute;
+	background-color: rgba(163, 163, 163, 0.5);
+	padding: 10px;
+	bottom: 30%;
+	right: -70%;
+	border-radius: 5px;
+	display: block;
+}
+
+@media only screen and (max-width: 1000px) {
+	.protip{
+		position: absolute;
+		bottom: -30%;
+		right: 15%;
+	}
 }
