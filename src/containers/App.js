@@ -60,6 +60,9 @@ class App extends React.Component {
     }
     changingBoard(dataFromBoard, indexFromBoard){
         console.log('Data aquired in board: ' + dataFromBoard + 'Index aquired in board: ' + indexFromBoard)
+        if(dataFromBoard === ''){
+            dataFromBoard = '.'
+        }
         var newBoard = this.state.board.split('')
         newBoard[indexFromBoard] = dataFromBoard
         var connectedNewBoard = newBoard.join('')
